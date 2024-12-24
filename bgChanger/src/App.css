@@ -1,0 +1,15 @@
+.div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 500px;
+}
+
+.buttons {
+  color: white;
+  width: 90px;
+  height: 50px;
+  border-radius: 20%;
+}
