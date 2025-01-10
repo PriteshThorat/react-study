@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Conainer, PostCard } from '../components/index';
+import { Container, PostCard } from '../components/index';
 import service from '../appwrite/config';
 
 const AllPosts = () => {
@@ -15,7 +15,7 @@ const AllPosts = () => {
 
     return (
         <div className="w-full py-8">
-            <Conainer>
+            <Container>
                 <div className="flex flex-wrap">
                     {
                         posts.map(post => (
@@ -27,7 +27,7 @@ const AllPosts = () => {
                         ))
                     }
                 </div>
-            </Conainer>
+            </Container>
         </div>
     );
 };

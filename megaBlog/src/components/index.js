@@ -11,6 +11,7 @@ import Login from './Login';
 import RTE from './RTE';
 import PostForm from './post-form/PostForm';
 import AuthLayout from './AuthLayout';
+import Logout from './Signup';
 
 export {
     Header,
@@ -25,5 +26,6 @@ export {
     Login,
     RTE,
     PostForm,
-    AuthLayout
+    AuthLayout,
+    Logout
 }
