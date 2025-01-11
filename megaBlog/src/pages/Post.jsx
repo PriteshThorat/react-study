@@ -6,7 +6,7 @@ import parse from 'html-react-parser';
 import { useSelector } from "react-redux";
 
 const Post = () => {
-    const [post, setPost] = useState([]);
+    const [post, setPost] = useState(null);
     const { slug } = useParams();
     const navigate = useNavigate();
 

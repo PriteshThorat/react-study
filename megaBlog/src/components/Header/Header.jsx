@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Logo, LogoutBtn } from '../index';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -46,8 +46,8 @@ const Header = () => {
                     </div>
                     <ul className='flex ml-auto'>
                         {
-                            navItems.map((item) => {
-                                return item.active ? (
+                            navItems.map(item => (
+                                item.active ? (
                                     <li key={item.name}>
                                         <button
                                         onClick={() => navigate(item.slug)}
@@ -55,9 +55,8 @@ const Header = () => {
                                             {item.name}
                                         </button>
                                     </li>
-                                ) : null;
-                            })
-                        }
+                                ) : null)
+                            )}
                         {
                             authStatus && (
                                 <li>

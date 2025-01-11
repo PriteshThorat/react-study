@@ -1,4 +1,5 @@
-import { Login as LogIn} from '../components/index';
+import { useEffect } from 'react';
+import { Login as LogIn } from '../components/index';
 
 const Login = () => {
     return (

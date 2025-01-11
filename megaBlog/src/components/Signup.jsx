@@ -4,9 +4,9 @@ import { login as authLogin } from '../store/authSlice'
 import { Button, Input, Logo } from './index'
 import { useDispatch } from "react-redux";
 import authService from "../appwrite/auth";
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
-const Logout = () => {
+const Signup = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const {register, handleSubmit} = useForm();
@@ -19,12 +19,13 @@ const Logout = () => {
             const session = authService.createAccount(data);
 
             if(session){
-                const userData = authService.getCurrentUser();
-
-                if(userData){
-                    dispatch(authLogin(userData));
-                    navigate("/");
-                }
+                authService.getCurrentUser()
+                .then(userData => {
+                    if(userData){
+                        dispatch(authLogin(userData));
+                        navigate("/");
+                    }
+                })
             }
         } catch (error) {
             setError(error.message)
@@ -103,4 +104,4 @@ const Logout = () => {
     );
 };
 
-export default Logout;
+export default Signup;
