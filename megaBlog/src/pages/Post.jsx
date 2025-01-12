@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 
 const Post = () => {
     const [post, setPost] = useState(null);
+    const [imgUrl, setImgUrl] = useState('');
+
     const { slug } = useParams();
     const navigate = useNavigate();
 
@@ -19,6 +21,16 @@ const Post = () => {
             service.getPost(slug).then(post => {
                 if(post){
                     setPost(post);
+
+                    service.getFilePreview(post.featuredImage)
+                    .then(url => {
+                        if(url){
+                            setImgUrl(url);
+                        }
+                    })
+                    .catch(error => {
+                        console.log("At Post: ", error);
+                    });
                 }else{
                     navigate("/");
                 }
@@ -26,7 +38,7 @@ const Post = () => {
         }else{
             navigate("/");
         }
-    }, [slug, navigate]);
+    }, [slug, navigate, imgUrl]);
 
     const deletePost = () => {
         service.deletePost(slug).then(status => {
@@ -42,7 +54,7 @@ const Post = () => {
             <Container>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
                     <img
-                    src={service.getFilePreview(post.featuredImage)}
+                    src={imgUrl}
                     className="rounded-xl"
                     alt={post.title} />
                     {

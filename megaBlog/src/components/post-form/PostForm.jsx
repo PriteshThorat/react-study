@@ -35,7 +35,7 @@ const PostForm = ({ post }) => {
                 navigate(`/post/${dbPost.$id}`)
             }
         }else{
-            const file = service.uploadFile(data.image[0]);
+            const file = await service.uploadFile(data.image[0]);
 
             if(file){
                 const fileId = file.$id;
@@ -68,13 +68,15 @@ const PostForm = ({ post }) => {
 
     useEffect(() => {
         const subscription = watch((value, { name }) => {
-            setValue(
-                "slug",
-                slugTransform(value.title),
-                {
-                    shouldValidate: true
-                }
-            )
+            if(name === 'title'){
+                setValue(
+                    "slug",
+                    slugTransform(value.title),
+                    {
+                        shouldValidate: true
+                    }
+                );
+            }
         });
 
         return () => subscription.unsubscribe();
@@ -142,7 +144,7 @@ const PostForm = ({ post }) => {
                 }
                 <Select
                 className="mb-4"
-                option={[
+                options={[
                     "active",
                     "inactive"
                 ]}
